@@ -1,0 +1,42 @@
+PODS:
+  - Material (3.1.8):
+    - Material/Core (= 3.1.8)
+  - Material/Core (3.1.8):
+    - Motion (~> 3.1.1)
+  - Motion (3.1.3):
+    - Motion/Core (= 3.1.3)
+  - Motion/Core (3.1.3)
+  - PureLayout (3.1.8)
+  - Realm (10.12.0):
+    - Realm/Headers (= 10.12.0)
+  - Realm/Headers (10.12.0)
+  - RealmSwift (10.12.0):
+    - Realm (= 10.12.0)
+  - SwiftyBeaver (1.9.5)
+
+DEPENDENCIES:
+  - Material
+  - PureLayout
+  - RealmSwift
+  - SwiftyBeaver
+
+SPEC REPOS:
+  trunk:
+    - Material
+    - Motion
+    - PureLayout
+    - Realm
+    - RealmSwift
+    - SwiftyBeaver
+
+SPEC CHECKSUMS:
+  Material: a2a3f400a3b549d53ef89e56c58c4535b29db387
+  Motion: cf1e060e489f6661126374d5c60dbd2ed991605c
+  PureLayout: a4afb3d79dd958564ce33d22c89f407280d8e6a8
+  Realm: 32488213acb44660539c619d620cec1bac046166
+  RealmSwift: 0abdca6231d5ff8a4f84cef9c1121ef95a483faf
+  SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
+
+PODFILE CHECKSUM: 57da0c2fb7010af18df905e0587c7c69fcd27155
+
+COCOAPODS: 1.10.2
