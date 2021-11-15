@@ -1,0 +1,96 @@
+# By default, SwiftLint uses a set of sensible default rules you can adjust:
+disabled_rules: # rule identifiers turned on by default to exclude from running
+  - identifier_name # Consider re-adding this
+  - type_name # Add back in
+  - line_length
+  - cyclomatic_complexity # Add back in
+  - function_parameter_count
+  - function_body_length
+  - type_body_length
+  - file_length
+  - todo # Add back in
+  - nesting # Add back in or modify limits
+  - force_try
+  - force_unwrapping # Add back in
+  
+opt_in_rules: # some rules are turned off by default, so you need to opt-in
+  - first_where # Performance
+  - modifier_order
+  - prohibited_interface_builder # Ban the use of IBOutlets
+  - fallthrough # Disallow using fallthrough in switches
+  - identical_operands # Comparing two identical things is likely a mistake
+  - closure_spacing # Closure expressions should have a single space inside each brace
+  - collection_alignment # All elements in a collection literal should be vertically aligned
+  - contains_over_filter_count # Prefer contains over comparing filter(where:).count to 0
+  - anyobject_protocol # Prefer using AnyObject over class for class only protocol
+  - unused_import
+  - unowned_variable_capture # Prefer capturing references as weak to avoid potential crashes
+  - yoda_condition # The variable should be placed on the left, the constant on the right of a comparison operator.
+  - vertical_whitespace_between_cases # Include a single empty line between switch cases
+  - vertical_parameter_alignment_on_call # Function parameters should be aligned vertically if they’re in multiple lines in a method call
+  - unused_declaration # Declarations should be referenced at least once within all files linted
+  - empty_string # Prefer checking isEmpty over comparing string to an empty string literal
+  - empty_count
+  - contains_over_first_not_nil # Prefer contains over first(where:) != nil and firstIndex(where:) != nil
+  - sorted_imports # Imports should be sorted alphabetically
+  - sorted_first_last # Prefer using min() or max() over sorted().first or sorted().last
+  - redundant_nil_coalescing
+  - last_where
+  - flatmap_over_map_reduce
+  - unused_optional_binding
+  - force_cast
+  - trailing_whitespace
+  - inclusive_language # Prevents us using Master and Slave
+  - large_tuple
+
+
+included: # paths to include during linting. `--path` is ignored if present.
+  - CrosswordSolver
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
+  - explicit_self
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+# force_cast: warning # implicitly
+# force_try:
+  # severity: warning # explicitly
+# rules that have both warning and error levels, can set just the warning level
+# implicitly
+# line_length: 110
+# they can set both implicitly with an array
+# type_body_length:
+  - 300 # warning
+  - 400 # error
+# or they can set both explicitly
+# file_length:
+#   warning: 500
+#   error: 1200
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+# type_name:
+#   min_length: 4 # only warning
+#   max_length: # warning and error
+#     warning: 40
+#     error: 50
+#   excluded: iPhone # excluded via string
+#   allowed_symbols: ["_"] # these are allowed in type names
+# identifier_name:
+#   min_length: # only min_length
+#     error: 4 # only error
+#   excluded: # excluded via string array
+#     - id
+#     - URL
+#     - GlobalAPIKey
+
+empty_count:
+  only_after_dot: true
+
+unused_declaration:
+  include_public_and_open: true
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, codeclimate, junit, html, emoji, sonarqube, markdown, github-actions-logging)
+
+

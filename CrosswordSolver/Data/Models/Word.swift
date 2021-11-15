@@ -9,7 +9,7 @@ import RealmSwift
 
 public final class Word: BaseObject {
     @Persisted var word: String
-    
+
     convenience init(word: String) {
         self.init()
         self.word = word

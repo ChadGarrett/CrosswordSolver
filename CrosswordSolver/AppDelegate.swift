@@ -5,24 +5,24 @@
 //  Created by Chad Garrett on 2021/07/29.
 //
 
-import UIKit
 import SwiftyBeaver
+import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     let log = SwiftyBeaver.self
     let console = ConsoleDestination()  // log to Xcode Console
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         console.format = "$DHH:mm:ss$d $L $M"
         log.addDestination(console)
 
         let m = MigrationService()
         m.setup()
-        
+
         return true
     }
 

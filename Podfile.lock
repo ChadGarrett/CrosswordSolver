@@ -12,12 +12,14 @@ PODS:
   - Realm/Headers (10.12.0)
   - RealmSwift (10.12.0):
     - Realm (= 10.12.0)
+  - SwiftLint (0.45.0)
   - SwiftyBeaver (1.9.5)
 
 DEPENDENCIES:
   - Material
   - PureLayout
   - RealmSwift
+  - SwiftLint
   - SwiftyBeaver
 
 SPEC REPOS:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - PureLayout
     - Realm
     - RealmSwift
+    - SwiftLint
     - SwiftyBeaver
 
 SPEC CHECKSUMS:
@@ -35,8 +38,9 @@ SPEC CHECKSUMS:
   PureLayout: a4afb3d79dd958564ce33d22c89f407280d8e6a8
   Realm: 32488213acb44660539c619d620cec1bac046166
   RealmSwift: 0abdca6231d5ff8a4f84cef9c1121ef95a483faf
+  SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
   SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
 
-PODFILE CHECKSUM: 57da0c2fb7010af18df905e0587c7c69fcd27155
+PODFILE CHECKSUM: b94c8b04f75a8497b294cdc99fbe1b883321ddca
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

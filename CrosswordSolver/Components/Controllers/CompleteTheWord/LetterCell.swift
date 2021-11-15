@@ -13,25 +13,25 @@ protocol LetterCellDelegate: AnyObject {
 }
 
 final class LetterCell: UICollectionViewCell {
-    
+
     internal weak var delegate: LetterCellDelegate?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupView() {
         self.contentView.addSubview(self.textField)
         self.textField.autoPinEdgesToSuperviewEdges()
     }
-    
-    // MARK: -Subviews
-    
+
+    // MARK: - Subviews
+
     private lazy var textField: TextField = {
         let textField = TextField()
         textField.backgroundColor = Color.grey.lighten1
@@ -48,7 +48,7 @@ extension LetterCell: TextFieldDelegate {
         guard let text = text else { return }
         self.delegate?.textDidUpdate(to: text)
     }
-    
+
 //    if text.count >= 1 {
 //        textField.resignFirstResponder()
 //

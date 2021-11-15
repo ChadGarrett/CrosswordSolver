@@ -8,9 +8,9 @@
 import SwiftyBeaver
 
 final class RealmInterface<T: BaseObject>: RealmManager {
-    
+
     // MARK: Sync
-    
+
     internal func sync(_ objects: [T]) {
         do {
             try database.write { [weak self] in
@@ -20,9 +20,9 @@ final class RealmInterface<T: BaseObject>: RealmManager {
             SwiftyBeaver.error("Unable to sync objects.", error.localizedDescription)
         }
     }
-    
+
     // MARK: Add
-    
+
     @discardableResult internal func add(object: T) -> Bool {
         do {
             SwiftyBeaver.info("Adding object locally.")
@@ -35,9 +35,9 @@ final class RealmInterface<T: BaseObject>: RealmManager {
             return false
         }
     }
-    
+
     // MARK: Update
-    
+
     @discardableResult internal func update(object: T) -> Bool {
         do {
             SwiftyBeaver.info("Updating object locally.")
@@ -50,9 +50,9 @@ final class RealmInterface<T: BaseObject>: RealmManager {
             return false
         }
     }
-    
+
     // MARK: Delete
-    
+
     @discardableResult internal func delete(object: T) -> Bool {
         do {
             SwiftyBeaver.info("Deleting object locally.")

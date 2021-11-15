@@ -14,87 +14,86 @@ public struct Stylesheet {
         static let m: CGFloat = 12
         static let l: CGFloat = 8
     }
-    
+
     public struct Button {
         static let s: Int = 12
         static let m: Int = 16
         static let l: Int = 20
     }
-    
+
     public struct Text {
         //
         // Title
         //
         static let title: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .title1),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         //
         // HEADING 1
         //
         static let heading_1: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .headline),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         static let heading_1_center: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .headline),
             .paragraphStyle: Stylesheet.center,
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         //
         // HEADING 2
         //
-        
+
         static let subheading: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .subheadline),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         static let heading_2_center: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .subheadline),
             .paragraphStyle: Stylesheet.center,
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         // Callout
         static let callout: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .callout),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         //
         // Body
         //
         static let body: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .body),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
-        
+
         static let body_center: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(forTextStyle: .body),
             .paragraphStyle: Stylesheet.center,
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.label
         ]
     }
-    
-    
+
     // MARK: - Paragraph styles
-    
+
     static let left: NSMutableParagraphStyle = {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
         return paragraph
     }()
-    
+
     static let center: NSMutableParagraphStyle = {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         return paragraph
     }()
-    
+
     static let right: NSMutableParagraphStyle = {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .right

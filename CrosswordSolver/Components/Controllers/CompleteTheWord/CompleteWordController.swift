@@ -12,71 +12,71 @@ final class CompleteWordController: BaseViewController {
     override func setupView() {
         super.setupView()
         self.title = "Complete Word"
-        
+
         self.view.addSubview(self.stackView)
         self.stackView.autoPinEdge(toSuperviewMargin: .top, withInset: Stylesheet.Padding.m)
         self.stackView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
-        
+
         self.view.addSubview(self.adjustTextFieldButtonView)
         self.adjustTextFieldButtonView.autoPinEdge(.top, to: .bottom, of: self.stackView)
         self.adjustTextFieldButtonView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
-        
+
         self.view.addSubview(self.lblNumLetters)
         self.lblNumLetters.autoPinEdge(.top, to: .bottom, of: self.adjustTextFieldButtonView)
         self.lblNumLetters.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
-        
+
         self.view.addSubview(self.accessoryButtonView)
         self.accessoryButtonView.autoPinEdge(.top, to: .bottom, of: self.lblNumLetters)
         self.accessoryButtonView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
-        
+
         self.view.addSubview(self.btnSearch)
         self.btnSearch.autoPinEdge(.top, to: .bottom, of: self.accessoryButtonView, withOffset: 14)
         self.btnSearch.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
-        
+
         self.view.addSubview(self.tableView)
         self.tableView.autoPinEdge(.top, to: .bottom, of: self.btnSearch)
         self.tableView.autoPinEdges(toSuperviewEdges: [.left, .right, .bottom])
-        
+
         self.prepopulateTextFields()
     }
-    
+
     /// Adds the initial 3 textfields to the view
     private func prepopulateTextFields() {
         for n in 1...self.minCharacters {
             let textField = self.getLettertextField(index: n)
             self.textFields.append(textField)
             self.stackView.addArrangedSubview(textField)
-            
+
             // Set the first field as the active
             if n == 1 {
                 _ = textField.becomeFirstResponder()
             }
         }
     }
-    
-    // MARK: -Properties
-    
+
+    // MARK: - Properties
+
     private var minCharacters: Int = 3
     private var maxCharacters: Int = 12
-    
+
     private var textFields: [TextField] = []
-    
-    // MARK: -Data
-    
+
+    // MARK: - Data
+
     /// Current result set based on search criteria
     private var displayData: [Word] = [] {
         didSet { self.displayDataDidUpdate() }
     }
-    
+
     /// Data source to query the database of words
     private var dataProvider = BaseDataProvider<Word>(
         bindTo: .none,
         basePredicate: .truePredicate,
         filter: .truePredicate,
         sort: [.init(keyPath: "word")])
-    
-    // MARK: -Subviews
-    
+
+    // MARK: - Subviews
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -84,7 +84,7 @@ final class CompleteWordController: BaseViewController {
         stackView.distribution = .fillEqually
         return stackView
     }()
-    
+
     private lazy var btnSearch: RaisedButton = {
         let button = RaisedButton(title: "Search")
         button.addTarget(self, action: #selector(onSearch), for: .touchUpInside)
@@ -92,39 +92,39 @@ final class CompleteWordController: BaseViewController {
         button.titleColor = .white
         return button
     }()
-    
+
     private lazy var btnRemoveLetter: IconButton = {
         let button = IconButton(image: Icon.clear)
         button.setImage(nil, for: .disabled)
         button.addTarget(self, action: #selector(onRemoveLetter), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var btnAddLetter: IconButton = {
         let button = IconButton(image: Icon.add)
         button.setImage(nil, for: .disabled)
         button.addTarget(self, action: #selector(onAddLetter), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var adjustTextFieldButtonView = HorizontalButtonView(leftView: self.btnRemoveLetter, rightView: self.btnAddLetter)
-    
+
     private lazy var btnAddWildcard: RaisedButton = {
         let button = RaisedButton(title: "Add ?")
         button.addTarget(self, action: #selector(onAddWildcard), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var btnClear: RaisedButton = {
         let button = RaisedButton(title: "Clear")
         button.addTarget(self, action: #selector(onClear), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var accessoryButtonView = HorizontalButtonView(leftView: self.btnAddWildcard, rightView: self.btnClear)
-    
+
     private lazy var lblNumLetters = UILabel()
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
@@ -132,9 +132,9 @@ final class CompleteWordController: BaseViewController {
         tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
-    
-    // MARK: -Helpers
-    
+
+    // MARK: - Helpers
+
     private final func getLettertextField(index: Int) -> TextField {
         let textField = TextField()
         textField.backgroundColor = Color.grey.lighten1
@@ -148,41 +148,41 @@ final class CompleteWordController: BaseViewController {
         textField.inputAccessoryView = self.toolbar
         return textField
     }
-    
+
     private lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.items = [
             .init(title: "<", style: .plain, target: self, action: #selector(onLeft)),
             .flexibleSpace(),
-            .init(title: "<", style: .plain, target: self, action: #selector(onRight)),
+            .init(title: "<", style: .plain, target: self, action: #selector(onRight))
         ]
         return toolbar
     }()
-    
+
     @objc private func onLeft() {
-        
+
     }
-    
+
     @objc private func onRight() {
-        
+
     }
-    
+
     private final func txtLettersDidUpdate() {
         // Clear the current search
         self.displayData = []
-        
+
         self.lblNumLetters.attributedText = .init(
             string: "\(self.textFields.count) letters",
             attributes: Stylesheet.Text.body)
 
         self.btnRemoveLetter.isEnabled = (self.textFields.count > 3)
         self.btnAddLetter.isEnabled = (self.textFields.count < self.maxCharacters)
-        
+
         SwiftyBeaver.info("Number of textfields: \(self.textFields.count)")
         SwiftyBeaver.info("Number of arranged subviews: \(self.stackView.arrangedSubviews.count)")
         SwiftyBeaver.info("Number of subviews: \(self.stackView.subviews.count)")
     }
-    
+
     private func displayDataDidUpdate() {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
@@ -190,39 +190,39 @@ final class CompleteWordController: BaseViewController {
     }
 }
 
-// MARK: -Action
+// MARK: - Action
 
 extension CompleteWordController {
     @objc private func onRemoveLetter() {
         self.textFields.forEach { item in item.resignFirstResponder() }
-        
+
         guard self.textFields.count > self.minCharacters else { return }
-        
+
         let removedTextField = self.textFields.removeLast()
         removedTextField.removeFromSuperview()
         self.stackView.removeArrangedSubview(removedTextField)
-        
+
         UIView.animate(withDuration: 0.3) {
             self.stackView.layoutIfNeeded()
         }
-        
+
         self.txtLettersDidUpdate()
     }
-    
+
     @objc private func onAddLetter() {
         guard self.textFields.count < self.maxCharacters else { return }
-        
+
         let a = self.getLettertextField(index: self.textFields.count)
         self.textFields.append(a)
         self.stackView.addArrangedSubview(a)
-        
+
         UIView.animate(withDuration: 0.8) {
             self.stackView.layoutIfNeeded()
         }
-        
+
         self.txtLettersDidUpdate()
     }
-    
+
     @objc private func onAddWildcard() {
         self.textFields.forEach { textField in
             if textField.isFirstResponder {
@@ -231,24 +231,24 @@ extension CompleteWordController {
             }
         }
     }
-    
+
     @objc private func onClear() {
         self.textFields.forEach { textField in
             textField.text = nil
         }
-        
+
         self.displayData = []
     }
-    
+
     @objc private func onSearch() {
         let predicate = NSPredicate(format: "word LIKE[c] %@", "\(self.getSearchText())")
         self.dataProvider.filter = predicate
-        
+
         self.displayData = self.dataProvider
             .query()
             .filter { $0.word.count == self.textFields.count }
     }
-    
+
     private func getSearchText() -> String {
         var result: String = ""
         self.stackView.subviews.forEach { view in
@@ -259,7 +259,7 @@ extension CompleteWordController {
                 } else {
                     result += character
                 }
-                
+
             } else {
                 result += "*"
             }
@@ -272,11 +272,11 @@ extension CompleteWordController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.displayData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let word = self.displayData.item(at: indexPath.row)
         else { return tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath) }
-        
+
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.textLabel?.attributedText = .init(string: word.word)
         return cell
@@ -286,10 +286,10 @@ extension CompleteWordController: UITableViewDataSource {
 extension CompleteWordController: TextFieldDelegate {
     func textField(textField: TextField, didChange text: String?) {
         guard let text = text else { return }
-        
+
         if text.count >= 1 {
             textField.resignFirstResponder()
-            
+
             if let index = self.textFields.firstIndex(of: textField),
                let nextTextfield = self.textFields.item(at: index+1) {
                 _ = nextTextfield.becomeFirstResponder()

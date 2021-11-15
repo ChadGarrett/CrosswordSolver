@@ -16,5 +16,6 @@ target 'CrosswordSolver' do
   
   # Tools
   pod 'SwiftyBeaver'
+  pod 'SwiftLint'
 
 end

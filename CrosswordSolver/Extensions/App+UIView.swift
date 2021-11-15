@@ -16,7 +16,7 @@ extension UIView {
         self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         self.layer.shadowOpacity = 0.2
         self.layer.shadowRadius = 3
-        
+
         // Fix optimisation issues
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         self.layer.shouldRasterize = true
@@ -61,4 +61,3 @@ extension UIView {
         layer.add(animation, forKey: "shake")
     }
 }
-
