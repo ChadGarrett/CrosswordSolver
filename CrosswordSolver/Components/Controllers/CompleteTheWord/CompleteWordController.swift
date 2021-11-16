@@ -9,6 +9,16 @@ import Material
 import SwiftyBeaver
 
 final class CompleteWordController: BaseViewController {
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.navigationItem.rightBarButtonItem = self.btnClear
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func setupView() {
         super.setupView()
         self.title = "Complete Word"
@@ -25,19 +35,16 @@ final class CompleteWordController: BaseViewController {
         self.lblNumLetters.autoPinEdge(.top, to: .bottom, of: self.adjustTextFieldButtonView)
         self.lblNumLetters.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
-        self.view.addSubview(self.accessoryButtonView)
-        self.accessoryButtonView.autoPinEdge(.top, to: .bottom, of: self.lblNumLetters)
-        self.accessoryButtonView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
-
         self.view.addSubview(self.btnSearch)
-        self.btnSearch.autoPinEdge(.top, to: .bottom, of: self.accessoryButtonView, withOffset: 14)
+        self.btnSearch.autoPinEdge(.top, to: .bottom, of: self.lblNumLetters, withOffset: 14)
         self.btnSearch.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
         self.view.addSubview(self.tableView)
-        self.tableView.autoPinEdge(.top, to: .bottom, of: self.btnSearch)
+        self.tableView.autoPinEdge(.top, to: .bottom, of: self.btnSearch, withOffset: Stylesheet.Padding.s)
         self.tableView.autoPinEdges(toSuperviewEdges: [.left, .right, .bottom])
 
         self.prepopulateTextFields()
+        self.txtLettersDidUpdate()
     }
 
     /// Adds the initial 3 textfields to the view
@@ -77,6 +84,8 @@ final class CompleteWordController: BaseViewController {
 
     // MARK: - Subviews
 
+    private lazy var btnClear = UIBarButtonItem(title: "Clear", style: .done, target: self, action: #selector(onClear))
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -108,20 +117,6 @@ final class CompleteWordController: BaseViewController {
     }()
 
     private lazy var adjustTextFieldButtonView = HorizontalButtonView(leftView: self.btnRemoveLetter, rightView: self.btnAddLetter)
-
-    private lazy var btnAddWildcard: RaisedButton = {
-        let button = RaisedButton(title: "Add ?")
-        button.addTarget(self, action: #selector(onAddWildcard), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var btnClear: RaisedButton = {
-        let button = RaisedButton(title: "Clear")
-        button.addTarget(self, action: #selector(onClear), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var accessoryButtonView = HorizontalButtonView(leftView: self.btnAddWildcard, rightView: self.btnClear)
 
     private lazy var lblNumLetters = UILabel()
 
@@ -160,11 +155,11 @@ final class CompleteWordController: BaseViewController {
     }()
 
     @objc private func onLeft() {
-
+        // TODO
     }
 
     @objc private func onRight() {
-
+        // TODO
     }
 
     private final func txtLettersDidUpdate() {
@@ -173,14 +168,14 @@ final class CompleteWordController: BaseViewController {
 
         self.lblNumLetters.attributedText = .init(
             string: "\(self.textFields.count) letters",
-            attributes: Stylesheet.Text.body)
+            attributes: Stylesheet.Text.body_center)
 
         self.btnRemoveLetter.isEnabled = (self.textFields.count > 3)
         self.btnAddLetter.isEnabled = (self.textFields.count < self.maxCharacters)
 
-        SwiftyBeaver.info("Number of textfields: \(self.textFields.count)")
-        SwiftyBeaver.info("Number of arranged subviews: \(self.stackView.arrangedSubviews.count)")
-        SwiftyBeaver.info("Number of subviews: \(self.stackView.subviews.count)")
+        SwiftyBeaver.verbose("Number of textfields: \(self.textFields.count)")
+        SwiftyBeaver.verbose("Number of arranged subviews: \(self.stackView.arrangedSubviews.count)")
+        SwiftyBeaver.verbose("Number of subviews: \(self.stackView.subviews.count)")
     }
 
     private func displayDataDidUpdate() {
@@ -212,24 +207,15 @@ extension CompleteWordController {
     @objc private func onAddLetter() {
         guard self.textFields.count < self.maxCharacters else { return }
 
-        let a = self.getLettertextField(index: self.textFields.count)
-        self.textFields.append(a)
-        self.stackView.addArrangedSubview(a)
+        let newCharacterField = self.getLettertextField(index: self.textFields.count)
+        self.textFields.append(newCharacterField)
+        self.stackView.addArrangedSubview(newCharacterField)
 
         UIView.animate(withDuration: 0.8) {
             self.stackView.layoutIfNeeded()
         }
 
         self.txtLettersDidUpdate()
-    }
-
-    @objc private func onAddWildcard() {
-        self.textFields.forEach { textField in
-            if textField.isFirstResponder {
-                textField.text = "?"
-                textField.resignFirstResponder()
-            }
-        }
     }
 
     @objc private func onClear() {

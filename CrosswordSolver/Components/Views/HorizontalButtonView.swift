@@ -13,15 +13,17 @@ final class HorizontalButtonView: BaseView {
         super.init(frame: .zero)
     }
 
-    convenience init(leftView: UIView, rightView: UIView) {
+    convenience init(leftView: UIView, rightView: UIView?) {
         let buttonsView = UIStackView()
         buttonsView.backgroundColor = .clear
         buttonsView.axis = .horizontal
         buttonsView.alignment = .fill
         buttonsView.spacing = Stylesheet.Padding.s
         buttonsView.addArrangedSubview(leftView)
-        buttonsView.addArrangedSubview(rightView)
-        leftView.autoMatch(.width, to: .width, of: rightView)
+        if let right = rightView {
+            buttonsView.addArrangedSubview(right)
+            leftView.autoMatch(.width, to: .width, of: right)
+        }
         self.init(button: buttonsView)
     }
 

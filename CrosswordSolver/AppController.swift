@@ -49,10 +49,9 @@ class AppController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         self.checkWordDatabaseIsPopulated {
-            DispatchQueue.main.async { [weak self] in
-                UIView.animate(withDuration: 1) {
-                    self?.vwCard.isHidden = false
-                    self?.btnComplete.isHidden = false
+            DispatchQueue.main.async {
+                UIView.transition(with: self.vwCard, duration: 0.3, options: .transitionCrossDissolve) {
+                    self.vwCard.isHidden = false
                 }
             }
         }
@@ -95,7 +94,6 @@ class AppController: BaseViewController {
         button.setTitle("Begin", for: .normal)
         button.addTarget(self, action: #selector(onComplete), for: .touchUpInside)
         button.setTitle("Please wait while we load", for: .disabled)
-        button.isHidden = true // Until loading is complete
         return button
     }()
 
