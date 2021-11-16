@@ -23,8 +23,6 @@ final class CompleteWordController: BaseViewController {
         super.setupView()
         self.title = "Complete Word"
 
-//        self.view.addSubviewAndPinEdgesToSuperview(self.imgBackground)
-
         let cardView = CardView()
         cardView.backgroundColor = .systemGray3
 
@@ -33,7 +31,7 @@ final class CompleteWordController: BaseViewController {
         self.stackView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
         cardView.addSubview(self.adjustTextFieldButtonView)
-        self.adjustTextFieldButtonView.autoPinEdge(.top, to: .bottom, of: self.stackView)
+        self.adjustTextFieldButtonView.autoPinEdge(.top, to: .bottom, of: self.stackView, withOffset: Stylesheet.Padding.s)
         self.adjustTextFieldButtonView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
         cardView.addSubview(self.lblNumLetters)
@@ -160,6 +158,7 @@ final class CompleteWordController: BaseViewController {
         textField.placeholder = "?"
         textField.placeholderAnimation = .hidden
         textField.inputAccessoryView = self.toolbar
+        textField.detailLabel.text = "\(index)"
         return textField
     }
 
@@ -226,7 +225,7 @@ extension CompleteWordController {
     @objc private func onAddLetter() {
         guard self.textFields.count < self.maxCharacters else { return }
 
-        let newCharacterField = self.getLettertextField(index: self.textFields.count)
+        let newCharacterField = self.getLettertextField(index: self.textFields.count+1)
         self.textFields.append(newCharacterField)
         self.stackView.addArrangedSubview(newCharacterField)
 

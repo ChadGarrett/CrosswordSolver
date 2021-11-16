@@ -143,6 +143,14 @@
 			path = CompleteTheWord;
 			sourceTree = "<group>";
 		};
+		E58E37DC2743E5FF00DD8319 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E59997B526B3255C00C6FAEE /* AppController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		E58E697526B32EB700DCB482 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +198,6 @@
 				E58E697526B32EB700DCB482 /* Extensions */,
 				E59997C526B325CA00C6FAEE /* Components */,
 				E59997B126B3255C00C6FAEE /* AppDelegate.swift */,
-				E59997B526B3255C00C6FAEE /* AppController.swift */,
 				E59997BA26B3255F00C6FAEE /* Assets.xcassets */,
 				E59997BC26B3255F00C6FAEE /* LaunchScreen.storyboard */,
 				E59997BF26B3255F00C6FAEE /* Info.plist */,
@@ -210,6 +217,7 @@
 		E59997C626B325DF00C6FAEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E58E37DC2743E5FF00DD8319 /* Home */,
 				E52DDD1527430D2600160F7A /* Search */,
 				E550E3AB26BDAE9A0023C527 /* CompleteTheWord */,
 				E58E697826B32F5F00DCB482 /* BaseViewController.swift */,

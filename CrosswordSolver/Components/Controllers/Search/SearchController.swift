@@ -75,24 +75,15 @@ final class SearchController: BaseViewController {
         self.dataProvider.filter = self.searchPredicate
     }
 
+    // MARK: - Subviews
+
     private lazy var searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.autocapitalizationType = .none
         bar.autocorrectionType = .no
         bar.placeholder = "Search"
         bar.delegate = self
-        bar.inputAccessoryView = self.toolbar
         return bar
-    }()
-
-    private lazy var toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        toolbar.items = [.init(
-                            title: "?",
-                            style: .plain,
-                            target: self, action: #selector(onUnknownCharacter))]
-        toolbar.sizeToFit()
-        return toolbar
     }()
 
     private lazy var tableView: UITableView = {
@@ -102,10 +93,6 @@ final class SearchController: BaseViewController {
         tableView.dataSource = self
         return tableView
     }()
-
-    @objc private func onUnknownCharacter() {
-
-    }
 }
 
 extension SearchController: UISearchBarDelegate {
@@ -131,7 +118,8 @@ extension SearchController: UITableViewDataSource {
 
 extension SearchController: DataProviderUpdateDelegate {
     func providerDataDidUpdate<F>(_ provider: BaseDataProvider<F>) where F: BaseObject {
-
+        // NA as the binding updates the tableview
+        // TODO: Perhaps a display of total # of results
     }
 }
 

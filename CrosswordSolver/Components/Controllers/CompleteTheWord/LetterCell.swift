@@ -48,12 +48,4 @@ extension LetterCell: TextFieldDelegate {
         guard let text = text else { return }
         self.delegate?.textDidUpdate(to: text)
     }
-
-//    if text.count >= 1 {
-//        textField.resignFirstResponder()
-//
-//        if let index = self.txtLetters.firstIndex(of: textField),
-//           let nextTextfield = self.txtLetters.item(at: index+1) {
-//            _ = nextTextfield.becomeFirstResponder()
-//        }
 }

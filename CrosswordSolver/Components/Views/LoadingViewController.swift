@@ -28,7 +28,6 @@ final class LoadingViewController: UIViewController {
         self.textDidUpdate()
 
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-//        view.alpha = 0.5
 
         self.view.addSubviewAndPinEdgesToSuperview(blurEffectView)
 
@@ -89,7 +88,7 @@ final class LoadingViewController: UIViewController {
     private lazy var lblLoaderText = UILabel()
 
     private lazy var blurEffectView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .systemThickMaterialDark)
+        let blurEffect = UIBlurEffect(style: .prominent)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
 
         blurEffectView.alpha = 0.8

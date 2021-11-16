@@ -40,8 +40,6 @@ final class HorizontalButtonView: BaseView {
         self.button.autoPinEdge(toSuperviewEdge: .left, withInset: self.sidePadding)
         self.button.autoPinEdge(toSuperviewEdge: .right, withInset: self.sidePadding)
         self.button.autoPinEdge(toSuperviewEdge: .bottom, withInset: self.topPadding)
-
-//        self.backgroundColor = .white
     }
 
     private let button: UIView
