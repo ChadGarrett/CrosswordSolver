@@ -15,7 +15,7 @@ extension UIView {
         }
     }
 
-    func addSubviewAndPinEdgesToSuperview(_ view: UIView, with insets: UIEdgeInsets) {
+    func addSubviewAndPinEdgesToSuperview(_ view: UIView, with insets: UIEdgeInsets = UIEdgeInsets()) {
         self.addSubview(view)
         view.autoPinEdgesToSuperviewEdges(with: insets)
     }

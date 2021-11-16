@@ -78,6 +78,15 @@ public struct Stylesheet {
             .paragraphStyle: Stylesheet.center,
             .foregroundColor: UIColor.label
         ]
+
+        //
+        // Loader text
+        //
+        static let loader: [NSAttributedString.Key: Any] = [
+            .font: UIFont.preferredFont(forTextStyle: .headline),
+            .paragraphStyle: Stylesheet.center,
+            .foregroundColor: UIColor.white
+        ]
     }
 
     // MARK: - Paragraph styles

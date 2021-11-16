@@ -48,26 +48,19 @@ class AppController: BaseViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        if self.vwCard.isHidden {
-            UIView.animate(withDuration: 10) {
-                self.vwCard.isHidden = false
-            }
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Check that the word database has been populated
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            try? RealmManager.instance.loadDictionaryIntoRealm {
-                DispatchQueue.main.async { [weak self] in
-                    self?.btnComplete.isEnabled = true
+        self.checkWordDatabaseIsPopulated {
+            DispatchQueue.main.async { [weak self] in
+                UIView.animate(withDuration: 1) {
+                    self?.vwCard.isHidden = false
+                    self?.btnComplete.isHidden = false
                 }
             }
         }
     }
+
+    // MARK: - Properties
+
+    private var didCheckPopulation: Bool = false
 
     // MARK: - Subviews
 
@@ -101,8 +94,8 @@ class AppController: BaseViewController {
         button.backgroundColor = Color.lightBlue.accent4
         button.setTitle("Begin", for: .normal)
         button.addTarget(self, action: #selector(onComplete), for: .touchUpInside)
-        button.isEnabled = false // Until we've verified the word database is populated
         button.setTitle("Please wait while we load", for: .disabled)
+        button.isHidden = true // Until loading is complete
         return button
     }()
 
@@ -123,5 +116,22 @@ extension AppController {
 
     @objc private func onComplete() {
         self.route(to: CompleteWordController())
+    }
+
+    /// Checks the word database is populated and completes once done
+    private func checkWordDatabaseIsPopulated(_ onCompletion: @escaping () -> Void) {
+        guard !self.didCheckPopulation else {
+            onCompletion()
+            return
+        }
+
+        self.displayLoader {
+            try? RealmManager.instance.loadDictionaryIntoRealm {
+                self.didCheckPopulation = true
+                self.hideLoader {
+                    onCompletion()
+                }
+            }
+        }
     }
 }

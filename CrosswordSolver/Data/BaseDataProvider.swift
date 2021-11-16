@@ -87,7 +87,7 @@ class BaseDataProvider<F: BaseObject> {
     private typealias QueryAndRealm = (query: Results<F>, realm: Realm)
 
     private func queryAndRealm(options: QueryOptions = .default) -> QueryAndRealm {
-        let realm = RealmManager().database
+        let realm = try! Realm()
         realm.refresh()
         let query = realm
             .objects(F.self)

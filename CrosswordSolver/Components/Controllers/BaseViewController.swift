@@ -23,11 +23,32 @@ class BaseViewController: UIViewController {
         // Subclasses to override
     }
 
+    // MARK: Properties
+
+    private lazy var loader = LoadingViewController()
+
     // MARK: Helpers
 
     internal func route(to controller: UIViewController, animated: Bool = true) {
         DispatchQueue.main.async { [weak self] in
             self?.navigationController?.pushViewController(controller, animated: animated)
+        }
+    }
+
+    /// Displays a full screen loader to indicate to the user something is happening
+    /// - Parameter onCompletion: Callback that is fired once the loader is showing
+    internal func displayLoader(_ onCompletion: @escaping () -> Void) {
+        let loader = loader
+        DispatchQueue.main.async { [weak self] in
+            self?.navigationController?.present(loader, animated: true, completion: onCompletion)
+        }
+    }
+
+    /// Hides the full screen loader
+    /// - Parameter onCompletion: Callback that is fired once the loader is fully dismissed
+    internal func hideLoader(_ onCompletion: @escaping() -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            self?.loader.dismiss(animated: true, completion: onCompletion)
         }
     }
 }

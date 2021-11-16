@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Bind to Realm and update when changes to the data occur
 enum DataProviderBindTarget {
     case none
     case tableView(UITableView)
@@ -43,7 +44,8 @@ extension DataProviderBindTarget {
     }
 }
 
-// TableView
+// MARK: - TableView
+
 extension DataProviderBindTarget {
     private func handleInitialUpdate(_ tableView: UITableView) {
         tableView.reloadData()
@@ -68,7 +70,7 @@ extension DataProviderBindTarget {
     }
 }
 
-// CollectionView
+// MARK: - CollectionView
 extension DataProviderBindTarget {
     private func handleInitialUpdate(_ collectionView: UICollectionView) {
         collectionView.reloadData()

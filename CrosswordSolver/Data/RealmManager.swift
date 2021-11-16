@@ -13,13 +13,11 @@ import SwiftyBeaver
 public class RealmManager {
     static let instance = RealmManager()
 
-    internal var database: Realm
-
     // MARK: Setup
 
     internal init() {
         do {
-            database = try Realm()
+            _ = try Realm()
         } catch let error {
             SwiftyBeaver.debug(error)
             SwiftyBeaver.error("Unable to initialize Realm.", error.localizedDescription)
@@ -29,9 +27,12 @@ public class RealmManager {
 
     /// Resets/clears the database
     func deleteAllFromDatabase() {
+        guard let realm = try? Realm()
+        else { return }
+
         do {
-            try self.database.write {
-                database.deleteAll()
+            try realm.write {
+                realm.deleteAll()
             }
         } catch let error {
             SwiftyBeaver.error("Unable to delete all data from realm.", error.localizedDescription)
@@ -42,33 +43,46 @@ public class RealmManager {
 
     /// Loads the word dictionary into realm if it has not been done before
     /// - Parameter onCompletion: Callback that runs once the load has completed
-    internal func loadDictionaryIntoRealm(_ onCompletion: () -> Void = {}) throws {
-        guard let path = Bundle.main.path(forResource: "words_dictionary", ofType: "json") else {
-            SwiftyBeaver.error("Unable to load words_dictionary.json")
-            return
-        }
+    internal func loadDictionaryIntoRealm(_ onCompletion: @escaping () -> Void = {}) throws {
+        DispatchQueue(label: "realm-populate").async {
+            // There are currenty 370,100 words in the dictionary which consumes a lot of memory
+            // Release all the held data immediately after populating to free up memory
+            autoreleasepool {
+                guard let realm = try? Realm() else {
+                    return
+                }
 
-        // Check if there is already data to avoid loading the dictionary again
-        if self.database.objects(Word.self).count > 0 {
-            onCompletion()
-            return
-        }
+                guard let path = Bundle.main.path(forResource: "words_dictionary", ofType: "json") else {
+                    SwiftyBeaver.error("Unable to load words_dictionary.json")
+                    return
+                }
 
-        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .uncached)
-        let words = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Int]
+                // Check if there is already data to avoid loading the dictionary again
+                if realm.objects(Word.self).count > 0 {
+                    SwiftyBeaver.info("Word data is pre-populated.")
+                    onCompletion()
+                    return
+                }
 
-        if words == nil {
-            SwiftyBeaver.error("Unable to serialise words from JSON")
-            return
-        }
+                guard let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .uncached) else {
+                    SwiftyBeaver.error("Unable to read word dictionary file.")
+                    return
+                }
 
-        try self.database.write {
-            words?.enumerated().forEach { (_, word) in
-                self.database.add(Word(word: word.key))
+                let words = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Int]
+
+                if words == nil {
+                    SwiftyBeaver.error("Unable to serialise words from JSON")
+                    return
+                }
+
+                try? realm.write {
+                    realm.add(words!.map { Word(word: $0.key) })
+                }
+
+                SwiftyBeaver.info("Added: \(realm.objects(Word.self).count)")
+                onCompletion()
             }
         }
-
-        SwiftyBeaver.info("Added: \(self.database.objects(Word.self).count)")
-        onCompletion()
     }
 }
