@@ -9,6 +9,7 @@ import RealmSwift
 import SwiftyBeaver
 import UIKit
 
+/// Free text search screen returning any results that match the search text
 final class SearchController: BaseViewController {
 
     init() {
@@ -37,20 +38,6 @@ final class SearchController: BaseViewController {
 
         self.tableView.autoPinEdge(.top, to: .bottom, of: self.searchBar)
         self.tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .top)
-
-        self.populateWords()
-    }
-
-    private func populateWords() {
-        // Check if there are no words loaded
-        if self.dataProvider.query(.notFiltered).count == 0 {
-            // No words have been loaded
-            do {
-                try RealmManager.instance.loadDictionaryIntoRealm()
-            } catch let error {
-                SwiftyBeaver.error("Unable to populate word database.", context: error)
-            }
-        }
     }
 
     // MARK: - Data

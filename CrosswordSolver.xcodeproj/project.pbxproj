@@ -100,6 +100,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E52DDD1527430D2600160F7A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E58E698226B33AEF00DCB482 /* SearchController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		E550E39326BD1E980023C527 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,9 +208,9 @@
 		E59997C626B325DF00C6FAEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E52DDD1527430D2600160F7A /* Search */,
 				E550E3AB26BDAE9A0023C527 /* CompleteTheWord */,
 				E58E697826B32F5F00DCB482 /* BaseViewController.swift */,
-				E58E698226B33AEF00DCB482 /* SearchController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
