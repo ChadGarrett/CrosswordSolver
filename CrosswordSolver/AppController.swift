@@ -25,9 +25,6 @@ class AppController: BaseViewController {
     override final func setupView() {
         super.setupView()
 
-        self.view.addSubview(self.imgBackground)
-        self.imgBackground.autoPinEdgesToSuperviewEdges()
-
         self.view.addSubview(self.vwCard)
 
         self.vwCard.autoAlignAxis(toSuperviewAxis: .horizontal)
@@ -45,13 +42,17 @@ class AppController: BaseViewController {
 
         self.btnComplete.autoPinEdge(.top, to: .bottom, of: self.lblCompleteDescription, withOffset: Stylesheet.Padding.m)
         self.btnComplete.autoPinEdges(toSuperviewEdges: [.left, .right, .bottom], withInset: Stylesheet.Padding.s)
+
+        self.setBackgroundImage(imageName: "pattern_background")
     }
 
     override func viewDidAppear(_ animated: Bool) {
         self.checkWordDatabaseIsPopulated {
             DispatchQueue.main.async {
-                UIView.transition(with: self.vwCard, duration: 0.3, options: .transitionCrossDissolve) {
-                    self.vwCard.isHidden = false
+                if self.vwCard.isHidden {
+                    UIView.transition(with: self.vwCard, duration: 0.3, options: .transitionCrossDissolve) {
+                        self.vwCard.isHidden = false
+                    }
                 }
             }
         }
@@ -95,13 +96,6 @@ class AppController: BaseViewController {
         button.addTarget(self, action: #selector(onComplete), for: .touchUpInside)
         button.setTitle("Please wait while we load", for: .disabled)
         return button
-    }()
-
-    private lazy var imgBackground: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "pattern_background")
-        imageView.contentMode = .scaleAspectFill
-        return imageView
     }()
 }
 

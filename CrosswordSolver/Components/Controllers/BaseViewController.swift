@@ -51,4 +51,13 @@ class BaseViewController: UIViewController {
             self?.loader.dismiss(animated: true, completion: onCompletion)
         }
     }
+
+    func setBackgroundImage(imageName: String) {
+        let backgroundImage = UIImage(named: imageName)
+        let backgroundImageView = UIImageView(frame: self.view.frame)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.image = backgroundImage
+        self.view.insertSubview(backgroundImageView, at: 0)
+    }
 }

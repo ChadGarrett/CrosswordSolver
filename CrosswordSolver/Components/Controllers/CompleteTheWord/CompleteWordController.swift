@@ -23,7 +23,10 @@ final class CompleteWordController: BaseViewController {
         super.setupView()
         self.title = "Complete Word"
 
+//        self.view.addSubviewAndPinEdgesToSuperview(self.imgBackground)
+
         let cardView = CardView()
+        cardView.backgroundColor = .systemGray3
 
         cardView.addSubview(self.stackView)
         self.stackView.autoPinEdge(toSuperviewEdge: .top, withInset: Stylesheet.Padding.m)
@@ -51,6 +54,8 @@ final class CompleteWordController: BaseViewController {
 
         self.prepopulateTextFields()
         self.txtLettersDidUpdate()
+
+        self.setBackgroundImage(imageName: "pattern_background")
     }
 
     /// Adds the initial 3 textfields to the view
@@ -131,7 +136,15 @@ final class CompleteWordController: BaseViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
+        tableView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         return tableView
+    }()
+
+    private lazy var imgBackground: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "pattern_background")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
 
     // MARK: - Helpers
