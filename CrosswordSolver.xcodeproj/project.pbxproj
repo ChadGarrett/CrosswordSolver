@@ -16,7 +16,6 @@
 		E550E39C26BD29310023C527 /* BaseDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E39B26BD29310023C527 /* BaseDataProvider.swift */; };
 		E550E39E26BD295B0023C527 /* ProviderQueryOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E39D26BD295B0023C527 /* ProviderQueryOptions.swift */; };
 		E550E3A026BD29700023C527 /* DataProviderBindTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E39F26BD29700023C527 /* DataProviderBindTarget.swift */; };
-		E550E3A226BD298A0023C527 /* RealmInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E3A126BD298A0023C527 /* RealmInterface.swift */; };
 		E550E3A426BD29940023C527 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E3A326BD29940023C527 /* BaseObject.swift */; };
 		E550E3A626BD2C880023C527 /* MigrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E3A526BD2C870023C527 /* MigrationService.swift */; };
 		E550E3A826BDA8B10023C527 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E3A726BDA8B10023C527 /* CardView.swift */; };
@@ -49,7 +48,6 @@
 		E550E39B26BD29310023C527 /* BaseDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDataProvider.swift; sourceTree = "<group>"; };
 		E550E39D26BD295B0023C527 /* ProviderQueryOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderQueryOptions.swift; sourceTree = "<group>"; };
 		E550E39F26BD29700023C527 /* DataProviderBindTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderBindTarget.swift; sourceTree = "<group>"; };
-		E550E3A126BD298A0023C527 /* RealmInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmInterface.swift; sourceTree = "<group>"; };
 		E550E3A326BD29940023C527 /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		E550E3A526BD2C870023C527 /* MigrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationService.swift; sourceTree = "<group>"; };
 		E550E3A726BDA8B10023C527 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				E550E39B26BD29310023C527 /* BaseDataProvider.swift */,
 				E550E39D26BD295B0023C527 /* ProviderQueryOptions.swift */,
 				E550E39F26BD29700023C527 /* DataProviderBindTarget.swift */,
-				E550E3A126BD298A0023C527 /* RealmInterface.swift */,
 				E550E3A526BD2C870023C527 /* MigrationService.swift */,
 			);
 			path = Data;
@@ -369,7 +366,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E58E698726B4015500DCB482 /* HorizontalButtonView.swift in Sources */,
-				E550E3A226BD298A0023C527 /* RealmInterface.swift in Sources */,
 				E550E39C26BD29310023C527 /* BaseDataProvider.swift in Sources */,
 				E58E697926B32F5F00DCB482 /* BaseViewController.swift in Sources */,
 				E550E39526BD1EA30023C527 /* RealmManager.swift in Sources */,
