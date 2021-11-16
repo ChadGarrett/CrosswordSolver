@@ -23,24 +23,30 @@ final class CompleteWordController: BaseViewController {
         super.setupView()
         self.title = "Complete Word"
 
-        self.view.addSubview(self.stackView)
-        self.stackView.autoPinEdge(toSuperviewMargin: .top, withInset: Stylesheet.Padding.m)
+        let cardView = CardView()
+
+        cardView.addSubview(self.stackView)
+        self.stackView.autoPinEdge(toSuperviewEdge: .top, withInset: Stylesheet.Padding.m)
         self.stackView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
-        self.view.addSubview(self.adjustTextFieldButtonView)
+        cardView.addSubview(self.adjustTextFieldButtonView)
         self.adjustTextFieldButtonView.autoPinEdge(.top, to: .bottom, of: self.stackView)
         self.adjustTextFieldButtonView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
-        self.view.addSubview(self.lblNumLetters)
+        cardView.addSubview(self.lblNumLetters)
         self.lblNumLetters.autoPinEdge(.top, to: .bottom, of: self.adjustTextFieldButtonView)
         self.lblNumLetters.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
-        self.view.addSubview(self.btnSearch)
+        cardView.addSubview(self.btnSearch)
         self.btnSearch.autoPinEdge(.top, to: .bottom, of: self.lblNumLetters, withOffset: 14)
-        self.btnSearch.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
+        self.btnSearch.autoPinEdges(toSuperviewEdges: [.left, .right, .bottom], withInset: Stylesheet.Padding.s)
+
+        self.view.addSubview(cardView)
+        cardView.autoPinEdge(toSuperviewMargin: .top, withInset: Stylesheet.Padding.m)
+        cardView.autoPinEdges(toSuperviewEdges: [.left, .right], withInset: Stylesheet.Padding.s)
 
         self.view.addSubview(self.tableView)
-        self.tableView.autoPinEdge(.top, to: .bottom, of: self.btnSearch, withOffset: Stylesheet.Padding.s)
+        self.tableView.autoPinEdge(.top, to: .bottom, of: cardView, withOffset: Stylesheet.Padding.s)
         self.tableView.autoPinEdges(toSuperviewEdges: [.left, .right, .bottom])
 
         self.prepopulateTextFields()
