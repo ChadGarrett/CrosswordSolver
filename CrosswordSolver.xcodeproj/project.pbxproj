@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54A3D635350B34D59AA0B3B1 /* Pods_CrosswordSolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C440660337B0F9ED0923AA /* Pods_CrosswordSolver.framework */; };
 		E52DDD13274306C200160F7A /* App+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52DDD12274306C200160F7A /* App+UIView.swift */; };
+		E52DDD172743951C00160F7A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52DDD162743951C00160F7A /* LoadingViewController.swift */; };
 		E550E39526BD1EA30023C527 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E39426BD1EA30023C527 /* RealmManager.swift */; };
 		E550E39826BD1EC70023C527 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = E550E39726BD1EC70023C527 /* Word.swift */; };
 		E550E39A26BD1FD60023C527 /* words_dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = E550E39926BD1FD60023C527 /* words_dictionary.json */; };
@@ -41,6 +42,7 @@
 		37976C6F22EB8872B183345E /* Pods-CrosswordSolver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrosswordSolver.release.xcconfig"; path = "Target Support Files/Pods-CrosswordSolver/Pods-CrosswordSolver.release.xcconfig"; sourceTree = "<group>"; };
 		67F40BB6F39580D8787E902F /* Pods-CrosswordSolver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrosswordSolver.debug.xcconfig"; path = "Target Support Files/Pods-CrosswordSolver/Pods-CrosswordSolver.debug.xcconfig"; sourceTree = "<group>"; };
 		E52DDD12274306C200160F7A /* App+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+UIView.swift"; sourceTree = "<group>"; };
+		E52DDD162743951C00160F7A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E550E39426BD1EA30023C527 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		E550E39726BD1EC70023C527 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		E550E39926BD1FD60023C527 /* words_dictionary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words_dictionary.json; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				E59997C826B325F500C6FAEE /* BaseView.swift */,
 				E58E698626B4015500DCB482 /* HorizontalButtonView.swift */,
 				E550E3A726BDA8B10023C527 /* CardView.swift */,
+				E52DDD162743951C00160F7A /* LoadingViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				E59997B626B3255C00C6FAEE /* AppController.swift in Sources */,
 				E58E697726B32EC700DCB482 /* App+PureLayout.swift in Sources */,
 				E550E3AD26BDAEAF0023C527 /* App+String.swift in Sources */,
+				E52DDD172743951C00160F7A /* LoadingViewController.swift in Sources */,
 				E5CC3C7C26BF3DCA00A560C8 /* App+UIStackView.swift in Sources */,
 				E550E39826BD1EC70023C527 /* Word.swift in Sources */,
 				E52DDD13274306C200160F7A /* App+UIView.swift in Sources */,
